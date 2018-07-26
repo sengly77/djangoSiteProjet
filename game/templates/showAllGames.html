@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>List of video games</title>
+</head>
+<body style="padding-left: 2%; padding-top: 0.5%">
+<h1>List of video games</h1>
+
+<a href="{% url 'addGame'%}">Add a video game</a>
+<table style="width: 50%">
+    <th>Title</th>
+    <th>Description</th>
+    <th>Type</th>
+
+{% for game in games %}
+    <tr>
+        <td style="width: 15%">{{ game.title }}</td>
+
+        <td style="width: 25%">{{ game.description|truncatewords_html:120 }}</td>
+
+        <td style="width: 15%">{{ game.type }}</td>
+
+        <td style="width: 15%">
+            <a href="{% url 'updateGame' id=game.id %}">Edit</a>
+            <a href="{% url 'deleteGame' id=game.id %}">Delete</a>
+        </td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="3">Aucun jeu vidéo.</td>
+    </tr>
+
+{% endfor %}
+</table>
+</body>
+</html>
