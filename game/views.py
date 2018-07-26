@@ -11,11 +11,6 @@ def showAllGame(request):
     return render(request, "showAllGames.html", {'games': games})
 
 
-def showGame(request, id):
-    """ Show a video game """
-    pass
-
-
 def deleteGame(request, id):
     """ Delete a video game """
     game = Game.objects.get(id=id)
